@@ -1,0 +1,156 @@
+/* -- Base and Fonts -- */
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+}
+
+body {
+    background: radial-gradient(circle at center, #240b36 0%, #c31432 100%);
+    background-size: cover;
+    background-attachment: fixed;
+    color: #f8f6f0;
+    font-family: 'Quicksand', sans-serif;
+    min-height: 100vh;
+    display: flex; justify-content: center; align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 { font-family: 'Cinzel', serif; }
+
+/* -- Glassmorphism Container -- */
+.main-container {
+    background: rgba(15, 10, 30, 0.75);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%; max-width: 650px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.8), inset 0 0 20px rgba(255,215,0,0.05);
+    transition: all 0.5s ease;
+    position: relative;
+    z-index: 10;
+}
+
+/* -- Header -- */
+.header { text-align: center; margin-bottom: 30px; }
+.mystic-icon { font-size: 3rem; margin-bottom: 10px; animation: float 3s infinite ease-in-out; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.header h1 {
+    font-size: 2.8rem;
+    color: #ffd700;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+.header p { font-size: 1.1rem; color: #d4af37; opacity: 0.8; }
+
+/* -- Form Inputs -- */
+.input-row { display: flex; gap: 15px; margin-bottom: 20px; }
+.input-row.triplet .input-group { flex: 1; }
+.input-group { display: flex; flex-direction: column; width: 100%; }
+
+label {
+    font-size: 0.95rem; font-weight: 700;
+    color: #e0c05c; margin-bottom: 8px;
+    text-transform: uppercase; letter-spacing: 1px;
+}
+
+input {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 8px;
+    padding: 12px 15px;
+    color: #fff;
+    font-size: 1.1rem;
+    font-family: inherit;
+    transition: all 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #ffd700;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* Hide number arrows */
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+
+/* -- Main Action Button -- */
+.reveal-btn {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg, #b8860b, #daa520);
+    color: #1a0b2e;
+    border: none; border-radius: 12px;
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem; font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(218, 165, 32, 0.4);
+    transition: all 0.3s ease;
+    display: flex; justify-content: center; align-items: center; gap: 10px;
+}
+
+.reveal-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(218, 165, 32, 0.6);
+}
+
+.secondary-btn {
+    width: 100%; padding: 15px; margin-top: 30px;
+    background: transparent; border: 2px solid #b8860b; color: #daa520;
+    border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.3s;
+}
+.secondary-btn:hover { background: rgba(184, 134, 11, 0.2); }
+
+/* -- Reading Phasing States -- */
+.hidden { display: none !important; }
+
+#loading-zone { text-align: center; padding: 40px 0; }
+.crystal-ball { font-size: 4rem; animation: pulseBall 1.5s infinite alternate; filter: drop-shadow(0 0 20px #8b5cf6);}
+.pulsate { font-size: 1.2rem; color: #a78bfa; margin-top: 20px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; animation: fadeText 1.5s infinite alternate;}
+
+@keyframes pulseBall { 0% { transform: scale(0.9); } 100% { transform: scale(1.1); } }
+@keyframes fadeText { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+
+/* -- Dynamic Result Cards -- */
+.card-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    margin-top: 20px;
+    perspective: 1000px;
+}
+
+.destiny-card {
+    background: rgba(0, 0, 0, 0.4);
+    border-top: 2px solid #daa520;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    opacity: 0; transform: translateY(30px) rotateX(10deg);
+    animation: cardRise 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.card-grid .destiny-card:nth-child(1) { animation-delay: 0.1s; }
+.card-grid .destiny-card:nth-child(2) { animation-delay: 0.2s; }
+.card-grid .destiny-card:nth-child(3) { animation-delay: 0.3s; }
+.card-grid .destiny-card:nth-child(4) { animation-delay: 0.4s; }
+.card-grid .destiny-card:nth-child(5) { grid-column: 1 / -1; animation-delay: 0.5s; }
+.card-grid .destiny-card:nth-child(6) { grid-column: 1 / -1; animation-delay: 0.6s; }
+
+@keyframes cardRise { to { opacity: 1; transform: translateY(0) rotateX(0); } }
+
+.card-title { font-family: 'Cinzel', serif; color: #daa520; font-size: 1.1rem; margin-bottom: 15px; border-bottom: 1px solid rgba(218, 165, 32, 0.2); padding-bottom: 5px; }
+.card-data { font-size: 1.15rem; line-height: 1.5; color: #e2e8f0; }
+.highlight { color: #facc15; font-weight: 700; font-size: 1.3rem; }
+
+/* Responsive Constraints */
+@media (max-width: 550px) {
+    .input-row { flex-direction: column; gap: 15px; margin-bottom: 15px; }
+    .card-grid { grid-template-columns: 1fr; }
+}
